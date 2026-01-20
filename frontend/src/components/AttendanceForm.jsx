@@ -54,30 +54,26 @@ export default function AttendanceForm({ employees, onSubmit, loading }) {
 
   if (!employees || employees.length === 0) {
     return (
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <p className="text-gray-500 text-center">
-          No employees available. Please add employees first.
-        </p>
+      <div className="card p-6">
+        <p className="text-neutral-500 text-center">No employees available. Please add employees first.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Mark Attendance</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <form onSubmit={handleSubmit} className="card p-6 sm:p-8">
+      <h2 className="text-xl font-semibold text-neutral-900 mb-6">Mark Attendance</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
         <div>
-          <label htmlFor="employeeId" className="block text-sm font-medium text-gray-700 mb-1">
-            Employee *
+          <label htmlFor="employeeId" className="block text-sm font-medium text-neutral-700 mb-1.5">
+            Employee <span className="text-red-500">*</span>
           </label>
           <select
             id="employeeId"
             name="employeeId"
             value={formData.employeeId}
             onChange={handleChange}
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.employeeId ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`input-base ${errors.employeeId ? 'input-error' : ''}`}
           >
             <option value="">Select Employee</option>
             {employees.map((employee) => (
@@ -87,13 +83,13 @@ export default function AttendanceForm({ employees, onSubmit, loading }) {
             ))}
           </select>
           {errors.employeeId && (
-            <p className="text-red-500 text-xs mt-1">{errors.employeeId}</p>
+            <p className="text-red-500 text-xs mt-1.5">{errors.employeeId}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
-            Date *
+          <label htmlFor="date" className="block text-sm font-medium text-neutral-700 mb-1.5">
+            Date <span className="text-red-500">*</span>
           </label>
           <input
             type="date"
@@ -102,25 +98,23 @@ export default function AttendanceForm({ employees, onSubmit, loading }) {
             value={formData.date}
             onChange={handleChange}
             max={new Date().toISOString().split('T')[0]} // Cannot select future dates
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.date ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`input-base ${errors.date ? 'input-error' : ''}`}
           />
           {errors.date && (
-            <p className="text-red-500 text-xs mt-1">{errors.date}</p>
+            <p className="text-red-500 text-xs mt-1.5">{errors.date}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
-            Status *
+          <label htmlFor="status" className="block text-sm font-medium text-neutral-700 mb-1.5">
+            Status <span className="text-red-500">*</span>
           </label>
           <select
             id="status"
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-base"
           >
             <option value={ATTENDANCE_STATUS.PRESENT}>Present</option>
             <option value={ATTENDANCE_STATUS.ABSENT}>Absent</option>
@@ -131,7 +125,7 @@ export default function AttendanceForm({ employees, onSubmit, loading }) {
       <button
         type="submit"
         disabled={loading}
-        className="mt-6 w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        className="btn-primary mt-6"
       >
         {loading ? 'Marking...' : 'Mark Attendance'}
       </button>

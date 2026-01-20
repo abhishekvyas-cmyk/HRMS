@@ -31,14 +31,14 @@ export default function Employees() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Employee Management</h1>
-          <p className="mt-2 text-gray-600">Add and manage your employees</p>
+    <div className="min-h-[calc(100vh-4rem)] py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-10">
+          <h1 className="text-3xl font-bold text-neutral-900 tracking-tight">Employee Management</h1>
+          <p className="mt-1.5 text-neutral-500">Add and manage your employees</p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-10">
           {/* Add Employee Form */}
           <EmployeeForm onSubmit={handleAddEmployee} loading={false} />
 

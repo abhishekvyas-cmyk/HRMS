@@ -80,14 +80,14 @@ export default function Attendance() {
   const attendance = attendanceData?.data || attendanceData || [];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Attendance Management</h1>
-          <p className="mt-2 text-gray-600">Mark and view employee attendance</p>
+    <div className="min-h-[calc(100vh-4rem)] py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-10">
+          <h1 className="text-3xl font-bold text-neutral-900 tracking-tight">Attendance Management</h1>
+          <p className="mt-1.5 text-neutral-500">Mark and view employee attendance</p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-10">
           {/* Mark Attendance Form */}
           {employeesLoading ? (
             <Loader />
@@ -102,18 +102,18 @@ export default function Attendance() {
           )}
 
           {/* Filter Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">View Attendance</h2>
+          <div className="card p-6">
+            <h2 className="text-lg font-semibold text-neutral-900 mb-4">View Attendance</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="filterEmployee" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="filterEmployee" className="block text-sm font-medium text-neutral-700 mb-1.5">
                   Select Employee
                 </label>
                 <select
                   id="filterEmployee"
                   value={selectedEmployeeId}
                   onChange={(e) => setSelectedEmployeeId(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="input-base"
                 >
                   <option value="">Select Employee (Optional)</option>
                   {employees.map((employee) => (
@@ -122,27 +122,6 @@ export default function Attendance() {
                     </option>
                   ))}
                 </select>
-              </div>
-
-              <div>
-                <label htmlFor="filterDate" className="block text-sm font-medium text-gray-700 mb-1">
-                  Filter by Date (Optional)
-                </label>
-                <input
-                  type="date"
-                  id="filterDate"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {selectedDate && (
-                  <button
-                    onClick={() => setSelectedDate('')}
-                    className="mt-2 text-sm text-blue-600 hover:text-blue-800"
-                  >
-                    Clear date filter
-                  </button>
-                )}
               </div>
             </div>
           </div>
