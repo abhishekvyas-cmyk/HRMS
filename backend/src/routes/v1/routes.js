@@ -1,11 +1,12 @@
-const express=require("express");
-const router=express.Router();
+const express = require('express');
+const router = express.Router();
 
-const authRoutes = require("../../v1/component/auth/auth.routes");
-const taskRoutes = require("../../v1/component/task/task.routes");
-const userRoutes=require("../../v1/component/user/user.route")
+// Import route modules
+const employeeRoutes = require('./components/employee/employee.routes');
+const attendanceRoutes = require('./components/attendance/attendance.routes');
 
-router.use("/auth", authRoutes);
-router.use("/user",userRoutes);
+// Mount routes
+router.use('/employees', employeeRoutes);
+router.use('/attendance', attendanceRoutes);
 
-module.exports=router;
+module.exports = router;
